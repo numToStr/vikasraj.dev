@@ -1,9 +1,9 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
-import useTheme from "@material-ui/styles/useTheme";
+import { useLocalTheme } from "./ThemeContext";
 
 const Logo = ({ open, ...props }) => {
-    const { palette } = useTheme();
+    const [{ palette }] = useLocalTheme();
 
     const spring = useSpring({
         from: {

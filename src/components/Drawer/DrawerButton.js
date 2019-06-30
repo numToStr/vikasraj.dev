@@ -2,12 +2,12 @@ import React from "react";
 
 import { useTrail, animated, config } from "react-spring";
 import Box from "@material-ui/core/Box";
-import useTheme from "@material-ui/styles/useTheme";
+import { useLocalTheme } from "../ThemeContext";
 
 const bars = [28, 20, 28];
 
 const DrawerButton = ({ onClick, open }) => {
-    const { palette } = useTheme();
+    const [{ palette }] = useLocalTheme();
 
     const trails = useTrail(bars.length, {
         from: {
