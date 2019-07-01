@@ -6,19 +6,18 @@ import { useLocalTheme } from "../ThemeContext";
 
 const bars = [28, 20, 28];
 
-const DrawerButton = ({ onClick, open }) => {
+const DrawerButton = ({ onClick }) => {
     const [{ palette }] = useLocalTheme();
 
     const trails = useTrail(bars.length, {
         from: {
-            color: palette.text.primary,
             xy: [-10, 0],
             opacity: 0,
         },
         to: {
-            color: open ? "#fff" : palette.text.primary,
             xy: [0, 0],
             opacity: 1,
+            color: palette.text.primary,
         },
         config: config.wobbly,
     });

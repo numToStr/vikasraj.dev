@@ -4,11 +4,9 @@ import theme from "../styles/theme.config";
 const reducer = (state, { type }) => {
     switch (type) {
         case "LIGHT":
-            console.log("Light Theme");
-            return state.theme("light");
+            return { theme: theme("light") };
         case "DARK":
-            console.log("Dark Theme");
-            return state.theme("dark");
+            return { theme: theme("dark") };
         default:
             return state;
     }

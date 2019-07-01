@@ -2,6 +2,7 @@ import React from "react";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import { animated, useTrail, config } from "react-spring";
+import { useLocalTheme } from "../ThemeContext";
 
 const links = [
     {
@@ -27,6 +28,8 @@ const links = [
 ];
 
 export default ({ open, onTap }) => {
+    const [{ palette }] = useLocalTheme();
+
     const trails = useTrail(links.length, {
         config: config.stiff,
         from: {
@@ -48,7 +51,7 @@ export default ({ open, onTap }) => {
                 fontWeight="fontWeightBold"
                 lineHeight={1}
                 mb={3}
-                color="#fff"
+                color={palette.text.primary}
                 fontSize={{
                     xs: "h3.fontSize",
                     md: "h2.fontSize",

@@ -1,8 +1,11 @@
 import React from "react";
 import { animated, useSpring } from "react-spring";
 import Box from "@material-ui/core/Box";
+import { useLocalTheme } from "../ThemeContext";
 
 export default ({ open, children }) => {
+    const [{ palette }] = useLocalTheme();
+
     const spring = useSpring({
         from: { x: 0 },
         to: {
@@ -14,7 +17,7 @@ export default ({ open, children }) => {
         <Box
             component={animated.div}
             height="100%"
-            bgcolor="#000"
+            bgcolor={palette.background.default}
             position="fixed"
             top={0}
             left={0}

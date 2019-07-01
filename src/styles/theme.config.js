@@ -4,7 +4,7 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 const theme = type =>
     createMuiTheme({
         palette: {
-            type: "dark",
+            type,
             primary: {
                 main: "#ff1744", // real red
                 // main: "#00e676", // green
@@ -13,13 +13,13 @@ const theme = type =>
                 main: "#ff0",
             },
             background: {
-                default: "#000",
+                default: type === "dark" ? "#000" : "#fff",
             },
         },
         overrides: {
             MuiFab: {
                 root: {
-                    backgroundColor: "#fff",
+                    backgroundColor: type === "dark" ? "#fff" : "#d5d5d5",
                 },
             },
         },

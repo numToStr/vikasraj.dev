@@ -2,17 +2,16 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 import { useLocalTheme } from "./ThemeContext";
 
-const Logo = ({ open, ...props }) => {
+const Logo = ({ ...props }) => {
     const [{ palette }] = useLocalTheme();
 
     const spring = useSpring({
         from: {
             opacity: 0,
-            fill: palette.text.primary,
         },
         to: {
             opacity: 1,
-            fill: open ? "#fff" : palette.text.primary,
+            fill: palette.text.primary,
         },
     });
 
