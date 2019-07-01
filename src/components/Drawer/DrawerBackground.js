@@ -4,7 +4,11 @@ import Box from "@material-ui/core/Box";
 import { useLocalTheme } from "../ThemeContext";
 
 export default ({ open, children }) => {
-    const [{ palette }] = useLocalTheme();
+    const {
+        state: {
+            theme: { palette },
+        },
+    } = useLocalTheme();
 
     const spring = useSpring({
         from: { x: 0 },

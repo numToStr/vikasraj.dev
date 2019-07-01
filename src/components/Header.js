@@ -5,6 +5,7 @@ import Box from "@material-ui/core/Box";
 import MuiLink from "@material-ui/core/Link";
 import { navigate } from "gatsby";
 import Logo from "./Logo";
+import ThemeButton from "./ThemeButton";
 
 const Header = () => {
     const [show, setShow] = useState(false);
@@ -29,6 +30,7 @@ const Header = () => {
                 width="100%"
                 zIndex="tooltip"
                 display="flex"
+                alignItems="center"
                 justifyContent="space-between"
                 py={{
                     xs: 2.5,
@@ -39,23 +41,28 @@ const Header = () => {
                     md: 4,
                 }}
             >
-                <MuiLink
-                    underline="none"
-                    href="/"
-                    color="secondary"
-                    onClick={handleClick("/", false)}
-                >
-                    <Box
-                        clone
-                        height={{
-                            xs: 22,
-                            md: 25,
-                        }}
+                <Box clone lineHeight={1}>
+                    <MuiLink
+                        underline="none"
+                        href="/"
+                        color="secondary"
+                        onClick={handleClick("/", false)}
                     >
-                        <Logo />
-                    </Box>
-                </MuiLink>
-                <DrawerButton onClick={showDrawer} />
+                        <Box
+                            clone
+                            height={{
+                                xs: 22,
+                                md: 25,
+                            }}
+                        >
+                            <Logo />
+                        </Box>
+                    </MuiLink>
+                </Box>
+                <Box display="flex" alignItems="center">
+                    <ThemeButton />
+                    <DrawerButton onClick={showDrawer} />
+                </Box>
             </Box>
             <BaseDrawer open={show} onTap={handleClick} />
         </Fragment>

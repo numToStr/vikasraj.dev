@@ -7,7 +7,11 @@ import { useLocalTheme } from "../ThemeContext";
 const bars = [28, 20, 28];
 
 const DrawerButton = ({ onClick }) => {
-    const [{ palette }] = useLocalTheme();
+    const {
+        state: {
+            theme: { palette },
+        },
+    } = useLocalTheme();
 
     const trails = useTrail(bars.length, {
         from: {
@@ -32,6 +36,7 @@ const DrawerButton = ({ onClick }) => {
             p={{
                 md: 0.5,
             }}
+            ml={2}
         >
             {trails.map(({ color, xy, opacity }, $i) => (
                 <Box

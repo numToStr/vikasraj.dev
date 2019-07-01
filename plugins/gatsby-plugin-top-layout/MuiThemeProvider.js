@@ -4,7 +4,9 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import { useLocalTheme } from "../../src/components/ThemeContext";
 
 const MuiThemeProvider = ({ children }) => {
-    const [theme] = useLocalTheme();
+    const {
+        state: { theme },
+    } = useLocalTheme();
 
     return (
         <ThemeProvider theme={theme}>

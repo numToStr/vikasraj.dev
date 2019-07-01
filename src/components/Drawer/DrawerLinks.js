@@ -28,7 +28,11 @@ const links = [
 ];
 
 export default ({ open, onTap }) => {
-    const [{ palette }] = useLocalTheme();
+    const {
+        state: {
+            theme: { palette },
+        },
+    } = useLocalTheme();
 
     const trails = useTrail(links.length, {
         config: config.stiff,

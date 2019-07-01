@@ -3,7 +3,11 @@ import { useSpring, animated } from "react-spring";
 import { useLocalTheme } from "./ThemeContext";
 
 const Logo = ({ ...props }) => {
-    const [{ palette }] = useLocalTheme();
+    const {
+        state: {
+            theme: { palette },
+        },
+    } = useLocalTheme();
 
     const spring = useSpring({
         from: {
