@@ -1,6 +1,8 @@
-import React, { createContext, useReducer, useContext, useEffect } from "react";
+import React, { createContext, useReducer, useContext } from "react";
 import theme from "../styles/theme.config";
 import { THEME_DARK, THEME_LIGHT } from "../utils/themeTypes";
+
+const _global = typeof window === "undefined" && window;
 
 const reducer = (state, { type }) => {
     switch (type) {
@@ -17,15 +19,15 @@ const ThemeContext = createContext(null);
 
 const LocalThemeProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
-        theme: null,
-        type: null,
+        theme: theme(_global.__theme),
+        type: _global.__theme,
     });
 
-    useEffect(() => {
-        const themeType = localStorage.getItem("site-theme") || window.__theme;
+    // useEffect(() => {
+    //     const themeType = localStorage.getItem("site-theme") || window.__theme;
 
-        dispatch({ type: themeType });
-    }, [dispatch]);
+    //     dispatch({ type: themeType });
+    // }, [dispatch]);
 
     return (
         <ThemeContext.Provider value={{ state, dispatch }}>
