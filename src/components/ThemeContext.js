@@ -1,6 +1,5 @@
-import React, { createContext, useReducer, useContext } from "react";
+import React, { createContext, useReducer, useContext, useEffect } from "react";
 import theme from "../styles/theme.config";
-// import { getCookie } from "../utils/cookie";
 import { THEME_DARK, THEME_LIGHT } from "../utils/themeTypes";
 
 const reducer = (state, { type }) => {
@@ -18,15 +17,15 @@ const ThemeContext = createContext(null);
 
 const LocalThemeProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
-        theme: theme(window.__theme),
-        type: window.__theme,
+        theme: null,
+        type: null,
     });
 
-    // useEffect(() => {
-    //     const themeType = localStorage.getItem("site-theme") || window.__theme;
+    useEffect(() => {
+        const themeType = localStorage.getItem("site-theme") || window.__theme;
 
-    //     dispatch({ type: themeType });
-    // }, [dispatch]);
+        dispatch({ type: themeType });
+    }, [dispatch]);
 
     return (
         <ThemeContext.Provider value={{ state, dispatch }}>
