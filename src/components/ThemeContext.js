@@ -2,7 +2,7 @@ import React, { createContext, useReducer, useContext } from "react";
 import theme from "../styles/theme.config";
 import { THEME_DARK, THEME_LIGHT } from "../utils/themeTypes";
 
-const _global = typeof window === "undefined" && window;
+const _global = typeof window === "undefined" ? {} : window;
 
 const reducer = (state, { type }) => {
     switch (type) {
