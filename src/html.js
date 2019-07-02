@@ -12,6 +12,8 @@ export default function HTML(props) {
                     content="width=device-width, initial-scale=1, shrink-to-fit=no"
                 />
                 {props.headComponents}
+            </head>
+            <body {...props.bodyAttributes}>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
@@ -49,8 +51,6 @@ export default function HTML(props) {
                         `,
                     }}
                 ></script>
-            </head>
-            <body {...props.bodyAttributes}>
                 {props.preBodyComponents}
                 <noscript key="noscript" id="gatsby-noscript">
                     This app works best with JavaScript enabled.
