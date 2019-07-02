@@ -1,8 +1,19 @@
-import React, { createContext, useReducer, useContext } from "react";
+import React, {
+    createContext,
+    useReducer,
+    useContext,
+    useLayoutEffect,
+    useEffect,
+} from "react";
 import theme from "../styles/theme.config";
 import { THEME_DARK, THEME_LIGHT } from "../utils/themeTypes";
 
-const _global = typeof window === "undefined" ? {} : window;
+/**
+ * For fixing ssr issue and netlify build
+ * @source https://github.com/mui-org/material-ui/blob/master/docs/src/modules/components/ThemeContext.js
+ */
+const useEnhancedEffect =
+    typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const reducer = (state, { type }) => {
     switch (type) {
@@ -19,20 +30,22 @@ const ThemeContext = createContext(null);
 
 const LocalThemeProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
-        theme: theme(_global.__theme),
-        type: _global.__theme,
+        theme: null,
+        type: null,
     });
 
-    // useEffect(() => {
-    //     const themeType = localStorage.getItem("site-theme") || window.__theme;
+    useEnhancedEffect(() => {
+        const themeType = localStorage.getItem("site-theme") || window.__theme;
 
-    //     dispatch({ type: themeType });
-    // }, [dispatch]);
+        dispatch({ type: themeType });
+    }, []);
 
     return (
-        <ThemeContext.Provider value={{ state, dispatch }}>
-            {children}
-        </ThemeContext.Provider>
+        state.theme && (
+            <ThemeContext.Provider value={{ state, dispatch }}>
+                {children}
+            </ThemeContext.Provider>
+        )
     );
 };
 
